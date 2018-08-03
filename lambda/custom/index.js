@@ -3,10 +3,10 @@
 var Alexa = require('alexa-sdk');
 var flag=0;
 var streamInfo = {
-  title: 'Audio Stream Starter',
+  title: 'Moodify',
   subtitle: 'A starter template for an Alexa audio streaming skill.',
   cardContent: "Get more details at: https://skilltemplates.com",
-  url1: 'https://s3.amazonaws.com/harmeetsingh/Daaru+Band-(Mr-Jatt.com).mp3',
+  url1: 'https://s3.amazonaws.com/audio-dan/dandavis_A1_1_1+(online-audio-converter.com).mp3',
   url2: 'https://s3.amazonaws.com/harmeetsingh/clintanderson_A1_1_1+(online-audio-converter.com).mp3',
   image: {
     largeImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-lg.png',
@@ -28,120 +28,66 @@ exports.handler = (event, context, callback) => {
 var handlers = {
 
   'LaunchRequest': function() {
-    //this.emit('tell','Tell a question number');
-    //this.emit('PlayStream');
-    this.emit(':ask','Welcome');
+  
+    this.emit(':ask','How are you feeling?');
   },
-  'IntentToCallQues' : function() {
-    //var start = this.event.request.intent.slots["NUMBER"].value;
-      //this.emit(':tell', start);
-      // if(!start)
-      // {
-      //   //this.emit(':ask', 'hello aaaaaaaaaa');
-      //   this.emit('Unhandled');
-      // }
-      // else
-      // {
-         //this.emit(':ask', 'oo hello');
-         flag=1;
-         this.emit('PlayStream');
-         //this.response.shouldEndSession(false, 'Repromt krdo hume');
-      // }
+  'SadIntent' : function() {
+    
+         //flag=1;
+         //this.emit('PlayStream');
+         streamInfo.url1=randomPhrase(Happy);
+         this.response.speak('Let me play you a Happy Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.emit(':responseReady');
+ 
   },
-  'IntentToCallQuesTwo' : function() {
-    //var start = this.event.request.intent.slots["NUMBER"].value;
-      //this.emit(':tell', start);
-      // if(!start)
-      // {
-      //   //this.emit(':ask', 'hello aaaaaaaaaa');
-      //   this.emit('Unhandled');
-      // }
-      // else
-      // {
-         //this.emit(':ask', 'oo hello');
-         flag=0;
-         this.emit('PlayStream');
-         //this.response.shouldEndSession(false, 'Repromt krdo hume');
-      // }
+  'LazyIntent' : function() {
+         
+         streamInfo.url1=randomPhrase(Energetic);
+         this.response.speak('Lets change your mood.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.emit(':responseReady');
+      
+  },
+  'RomanticIntent' : function() {
+    
+         streamInfo.url1=randomPhrase(Romantic);
+         this.response.speak('Let me play a romantic song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.emit(':responseReady');
+      
+  },
+  'PartyIntent' : function() {
+    
+         streamInfo.url1=randomPhrase(Party);
+         this.response.speak('Let me play some party song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.emit(':responseReady');
+      
+  },
+  'CalmIntent' : function() {
+    
+         streamInfo.url1=randomPhrase(Relax);
+         this.response.speak('Let me play some soothing music.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.emit(':responseReady');
+      
   },
   'Handler' : function() {
     this.emit(':ask','khatam');
   },
-  //'MentorPalIntent': function () {
+  
+  // 'PlayStream': function() {
+  //   if(flag==1)
+  //     {
+  //        streamInfo.url1=randomPhrase(Sad);
+  //        this.response.speak('Lets change your mood.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+  //        this.emit(':responseReady');
 
-//     var MentorPals = {
-
-//     "questionone" : {
-//         "ansNumber": "answer",
-//         "answer": "is this"
-//     }, 
-//     "questiontwo" : {
-//         "ansNumber": "answer",
-//         "answer": "is this"
-//     }, 
-//     "questionthree" : {
-//         "ansNumber": "Answer",
-//         "answer": "is this"
-//     }, 
-//     "questionfour" : {
-//         "ansNumber": "Answer",
-//         "answer": "is this"
-//     }, 
-//     "questionfive" : {
-//         "ansNumber": "Answer",
-//         "answer": "is this"
-//     }, 
-//     "question six" : {
-//         "ansNumber": "Answer",
-//         "answer": "is this"
-//     }, 
-//     "questionseven" : {
-//         "ansNumber": "Answer",
-//         "answer": "is this"
-//      }
-// }
+  //     }
+  //   else
+  //     {
+  //       streamInfo.url2=randomPhrase(Happy);
+  //       this.response.speak('Let me play some music.').audioPlayerPlay('REPLACE_ALL', streamInfo.url2, streamInfo.url2, null, 0);
+  //       this.emit(':responseReady');
+  //     }
     
-//     //var guessNum = parseInt(this.event.request.intent.slots.number.value);
-
-//      var speechOutput = "Welcome to Mentor Pal! I can tell you about our US navy heroes. I can only give answers about one question at a time. What question are you interested in, question one, two, three?"
-
-//      //var reprompt = "Which question are you interested in? You can say question one, question two and so on."
-
-//     this.emit(':ask', speechOutput);
-
-//     const intentObj = this.event.request.intent;
-//     if (!intentObj.slots.MentorPal.value){
-//       console.log("ni aya");
-//         var speechOutput2 = "I do not have answer to this question. Try asking question one, question two, till seven";
-//         var repromptText = "Try asking any other question";
-//         //var header = "Not Valid question";
-//     } 
-//     else {
-//       console.log("aya");
-//         var ansNumber = MentorPals[MentorPal].ansNumber;
-//         var answer = MentorPals[MentorPal].answer;
-//         //var speechOutput2 = capitalizeFirst(MentorPal) + " " + ansNumber + " " + answer + ". Do you want to know more?";
-//         var speechOutput2="ayegegeggege";
-//         var repromptText = "Do you want to know anything else?";
-//         //var header = capitalizeFirst(MentorPal);
-//     }
-//     this.emit(':tell', PlayStream);
- // },
-  'PlayStream': function() {
-    if(flag==0)
-      {
-        this.emit(':ask', '<audio src= "https://s3.amazonaws.com/harmeetsingh/Daaru+Band-(Mr-Jatt.com).mp3" />');
-        // this.response.speak('Enjoy 1.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
-        // this.emit(':responseReady');
-      }
-    else
-      {
-        //this.emit(':ask', '<audio src= "https://s3.amazonaws.com/harmeetsingh/Daaru+Band-(Mr-Jatt.com).mp3" />');
-        this.response.speak('Enjoy 2.').audioPlayerPlay('REPLACE_ALL', streamInfo.url2, streamInfo.url2, null, 0);
-        this.emit(':responseReady');
-      }
-    //this.response.shouldEndSession(false);
-  },
+  // },
   'AMAZON.HelpIntent': function() {
     // skill help logic goes here
     this.emit(':responseReady');
@@ -181,18 +127,7 @@ var handlers = {
   'AMAZON.ResumeIntent': function() {
     this.emit('PlayStream');
   },
-  // 'AMAZON.LoopOnIntent': function() {
-  //   this.emit('AMAZON.StartOverIntent');
-  // },
-  // 'AMAZON.LoopOffIntent': function() {
-  //   this.emit('AMAZON.StartOverIntent');
-  // },
-  // 'AMAZON.ShuffleOnIntent': function() {
-  //   this.emit('AMAZON.StartOverIntent');
-  // },
-  // 'AMAZON.ShuffleOffIntent': function() {
-  //   this.emit('AMAZON.StartOverIntent');
-  // },
+  
   'AMAZON.StartOverIntent': function() {
     this.response.speak('Sorry. I can\'t do that yet.');
     this.emit(':responseReady');
@@ -219,6 +154,29 @@ var handlers = {
      this.emit('AMAZON.StopIntent');
    }
 }
+
+const Happy=['https://s3.amazonaws.com/rocksong/happy.mp3','https://s3.amazonaws.com/rocksong/feeling+good.mp3','https://s3.amazonaws.com/rocksong/Oasis+-+Wonderwall.mp3'];
+
+const Energetic=['https://s3.amazonaws.com/rocksong/ACDC+-+You+Shook+Me+All+Night+Long+(Official+Video).mp3','https://s3.amazonaws.com/rocksong/Avicii+-+Addicted+To+You.mp3'];
+
+const Romantic=['https://s3.amazonaws.com/rocksong/Ed+Sheeran+-+Thinking+Out+Loud+%5BOfficial+Video%5D.mp3','https://s3.amazonaws.com/rocksong/Taylor_Swift_-_Love_story_(mp3.pm).mp3'];
+
+const Party=['https://s3.amazonaws.com/rocksong/rockstar.mp3','https://s3.amazonaws.com/rocksong/rockabye.mp3','https://s3.amazonaws.com/rocksong/LMFAO+-+Party+Rock+Anthem+ft.+Lauren+Bennett%2C+GoonRock.mp3'];
+
+const Relax=['https://s3.amazonaws.com/rocksong/Beyonce%CC%81+-+Halo.mp3','https://s3.amazonaws.com/rocksong/Photograph+-+Ed+Sheeran+(Lyrics).mp3','https://s3.amazonaws.com/rocksong/Vance_Joy_-_Riptide_(mp3.pm).mp3'];
+
+
+
+function randomPhrase(myData) {
+    // the argument is an array [] of words or phrases
+
+    var i = 0;
+
+    i = Math.floor(Math.random() * myData.length);
+
+    return(myData[i]);
+}
+
 
 var audioEventHandlers = {
   'PlaybackStarted': function() {

@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "audioplayer",
+      "invocationName": "moodify",
       "intents": [{
           "name": "PlayStream",
           "samples": [
@@ -23,25 +23,78 @@
           ]
         },
         {
-          "name": "IntentToCallQues",
+          "name": "SadIntent",
           "samples": [
             
-            "What is your name",
-            "What is your full name",
-            "What's your first name",
-            "What's your last name"
+            "had a bad day at work",
+            "stressed",
+            "depressed",
+            "feeling low",
+            "sad",
+            "feeling upset",
+             "happy",
+            "had a good day",
+            "had a great day at work",
+            "in a good mood",
+            "feeling satisfied",
+            "feeling good",
+            "angry",
+            "cheerful"
           ]
         },
         {
-          "name": "IntentToCallQuesTwo",
+          "name": "PartyIntent",
           "samples": [
-            
-            "What is your date of birth",
-            "What is your birthday",
-            "When were you born",
-            "When do you cut the cake"
+            "friday night",
+            "Its weekend",
+            "party",
+            "lets party",
+            "partying",
+            "dance",
+            "sing",
+            "fun",
+            "enjoy",
+            "chill",
+            "excited for weekend",
+            "long weekend"
+
           ]
         },
+         {
+          "name": "CalmIntent",
+          "samples": [
+            "i am exhausted",
+            "it was a stressful day",
+            "tired",
+            "need to relax",
+            "feeling relaxed",
+            "concentrate",
+            "yoga",
+            "relax",
+            "calm",
+            "soothing",
+            "rest",
+            "relaxing"
+
+          ]
+        },
+         {
+          "name": "RomanticIntent",
+          "samples": [
+            "love",
+            "sex",
+            "need to be loved",
+            "long drive",
+            "dinner date",
+            "lunch date",
+            "date",
+            "wife",
+            "girlfriend",
+            "missing",
+            "loved ones"
+          ]
+        },
+
         {
           "name": "Handler",
           "samples": [
