@@ -12,9 +12,9 @@
   "license": "See license in ../LICENSE.txt",
   "dependencies": {
     "alexa-sdk": "^1.0.25"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/skilltemplates/audio-stream-starter-alexa.git"
   }
+  // "repository": {
+  //   "type": "git",
+  //   "url": "https://github.com/skilltemplates/audio-stream-starter-alexa.git"
+  // }
 }
