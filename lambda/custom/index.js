@@ -6,12 +6,12 @@ var streamInfo = {
   title: 'Moodify',
   subtitle: 'A starter template for an Alexa audio streaming skill.',
   cardContent: "Get more details at: https://skilltemplates.com",
-  url1: 'https://s3.amazonaws.com/audio-dan/dandavis_A1_1_1+(online-audio-converter.com).mp3',
-  url2: 'https://s3.amazonaws.com/harmeetsingh/clintanderson_A1_1_1+(online-audio-converter.com).mp3',
-  image: {
-    largeImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-lg.png',
-    smallImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-sm.png'
-  }
+  //url1: 'https://s3.amazonaws.com/audio-dan/dandavis_A1_1_1+(online-audio-converter.com).mp3',
+  //url2: 'https://s3.amazonaws.com/harmeetsingh/clintanderson_A1_1_1+(online-audio-converter.com).mp3',
+  //image: {
+    //largeImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-lg.png',
+    //smallImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-sm.png'
+  //}
 };
 
 exports.handler = (event, context, callback) => {
@@ -34,7 +34,6 @@ var handlers = {
   'SadIntent' : function() {
     
          flag=1;
-         //this.emit('PlayStream');
          streamInfo.url1=randomPhrase(Happy);
          this.response.speak('Let me play you a Happy Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
          this.emit(':responseReady');
@@ -90,8 +89,6 @@ var handlers = {
     this.callback(null, null)
   },
   'Unhandled': function() {
-    this.emit(':tell', 'aa gya unhndled me');
-    this.emit(':tell', 'hahaha');
     this.response.speak('Sorry. Something went wrong.');
     this.emit(':responseReady');
    },
