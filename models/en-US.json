@@ -11,18 +11,6 @@
           ]
         },
         {
-          "name": "MentorPalIntent",
-          "samples": [
-            "MentorPal"
-          ],
-          "slots": [
-            {
-              "name": "MentorPal",
-              "type": "AMAZON.EducationalOrganization"
-            }
-          ]
-        },
-        {
           "name": "SadIntent",
           "samples": [
             
@@ -40,6 +28,17 @@
             "feeling good",
             "angry",
             "cheerful"
+          ]
+        },
+        {
+          "name": "StopIntent",
+          "samples": [
+            
+            "stop",
+            "goodbye",
+            "bye",
+            "thanks",
+            "thank you"
           ]
         },
         {
@@ -78,6 +77,19 @@
 
           ]
         },
+          {
+          "name": "LazyIntent",
+          "samples": [
+            "lazy",
+            "sleepy",
+            "no mood",
+            "dont feel lile doing anything",
+            "very lazy",
+            "dull day",
+            "Dont wanna move out of my bed",
+            "stay in bed"
+          ]
+        },
          {
           "name": "RomanticIntent",
           "samples": [
@@ -91,22 +103,11 @@
             "wife",
             "girlfriend",
             "missing",
+            "romantic",
             "loved ones"
           ]
         },
 
-        {
-          "name": "Handler",
-          "samples": [
-            "khatm session",
-            "jide kamar te tatto he kamal",
-            "oo kudi kon nachdi",
-            "harmeet",
-            "name",
-            "noun",
-            "bla bla bla"
-          ]
-        },
         {
           "name": "AMAZON.YesIntent",
           "samples": [
