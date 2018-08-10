@@ -4,14 +4,6 @@ var Alexa = require('alexa-sdk');
 var flag=0;
 var streamInfo = {
   title: 'Moodify',
-  subtitle: 'A starter template for an Alexa audio streaming skill.',
-  cardContent: "Get more details at: https://skilltemplates.com",
-  //url1: 'https://s3.amazonaws.com/audio-dan/dandavis_A1_1_1+(online-audio-converter.com).mp3',
-  //url2: 'https://s3.amazonaws.com/harmeetsingh/clintanderson_A1_1_1+(online-audio-converter.com).mp3',
-  //image: {
-    //largeImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-lg.png',
-    //smallImageUrl: 'https://s3.amazonaws.com/cdn.dabblelab.com/img/alexa-card-sm.png'
-  //}
 };
 
 exports.handler = (event, context, callback) => {
@@ -72,7 +64,7 @@ var handlers = {
       
   },
   'Handler' : function() {
-    this.emit(':ask','khatam');
+    this.emit(':ask','End.');
   },
   
 
@@ -214,7 +206,7 @@ var audioEventHandlers = {
     this.emit(':responseReady');
   },
   'PlaybackNearlyFinished': function() {
-    this.emit(':ask', 'Do you have any other questions for me?');
+    this.emit(':responseReady');
   },
   'PlaybackFailed': function() {
     this.response.audioPlayerClearQueue('CLEAR_ENQUEUED');
