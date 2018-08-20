@@ -5,9 +5,9 @@
       "intents": [{
           "name": "PlayStream",
           "samples": [
-            "play",
-            "start",
-            "play stream"
+            "play moodify",
+            "start moodify",
+            "launch moodify"
           ]
         },
         {
@@ -20,14 +20,48 @@
             "feeling low",
             "sad",
             "feeling upset",
-             "happy",
+            "happy",
             "had a good day",
             "had a great day at work",
             "in a good mood",
             "feeling satisfied",
             "feeling good",
             "angry",
-            "cheerful"
+            "super happy",
+            "fantastic",
+            "cheerful",
+            "good"
+          ]
+        },
+        {
+          "name": "InterruptIntent",
+          "samples": [
+            
+            "play",
+            "start",
+            "what can you do",
+            "i dont know",
+            "dont know",
+            "cant say",
+            "no mood",
+            "cant tell",
+            "cant decide",
+            "didnt get it",
+            "didnt understand"
+          ]
+        },
+         {
+          "name": "JokeIntent",
+          "samples": [
+            
+            "joke",
+            "tell me a joke",
+            "tell me another one",
+            "one more",
+            "make me laugh",
+            "okay",
+            "sure",
+            "yeah"
           ]
         },
         {

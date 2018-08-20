@@ -2,6 +2,7 @@
 
 var Alexa = require('alexa-sdk');
 var flag=0;
+var lines =['You could say things like Happy, sad, Lazy, Romantic','You could say things like Calm, Depressed, Lazy, Romantic', 'You could say things like Romantic, Relaxed, or wanna party', 'You could say things like Happy, calm, Energetic'];
 var streamInfo = {
   title: 'Moodify',
 };
@@ -21,14 +22,32 @@ var handlers = {
 
   'LaunchRequest': function() {
   
-    this.emit(':ask','How are you feeling?');
+    this.emit(':ask','Hi! Welcome to Moodify! How are you feeling today?' + randomLines(lines));
   },
   'SadIntent' : function() {
     
          flag=1;
+         // streamInfo.url1=randomPhrase(Happy);
+         // this.response.speak('Let me play you a Happy Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         // this.emit(':responseReady');
+         this.emit(':ask', 'Let me play you some music to cheer you up! <audio src = "https://s3.amazonaws.com/ssmlaudios/happy-SSML.mp3" /> Do you feel any better ? .... Wanna hear some more ');
+         //this.emit('SadsongIntent');
+         //this.emit(':ask','<audio src = "https://s3.amazonaws.com/ssmlaudios/happy-SSML.mp3" />');
+         //this.emit(':ask', 'Do you feel any better or Wanna hear some more');
+ 
+  },
+
+  'SadsongIntent': function() {
+      this.emit(':ask','<audio src = "https://s3.amazonaws.com/ssmlaudios/happy-SSML.mp3" />');
+  },
+
+  'HappyIntent' : function() {
+    
+         flag=1;
          streamInfo.url1=randomPhrase(Happy);
-         this.response.speak('Let me play you a Happy Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
+         this.response.speak('Enjoy.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
          this.emit(':responseReady');
+         //this.emit(':ask','<audio src = "https://s3.amazonaws.com/rocksong/A+Great+Big+World%2C+Christina+Aguilera+-+Say+Something-%5BAudioTrimmer.com%5D.mp3" />');
  
   },
   'LazyIntent' : function() {
@@ -63,6 +82,18 @@ var handlers = {
          this.emit(':responseReady');
       
   },
+
+ 'InterruptIntent': function() {
+    
+    this.emit(':ask', 'Sorry! I didn\'t get you. To continue tell me How are you feeling? You can say Happy sad Lazy Romantic Relaxed or wanna party ?' );
+
+ },
+
+ 'JokeIntent': function() {
+    
+    this.emit(':ask','Here\'s a joke! Knock! Knock! ...Who’s there? A broken pencil. A broken pencil who? Never mind, it’s pointless.... Waanna hear another one?');
+  
+ },
   'Handler' : function() {
     this.emit(':ask','End.');
   },
@@ -70,7 +101,8 @@ var handlers = {
 
   'AMAZON.HelpIntent': function() {
     // skill help logic goes here
-    this.emit(':responseReady');
+    this.emit(':ask','How can I help you?');
+
   },
   'SessionEndedRequest': function() {
     // no session ended logic needed
@@ -91,6 +123,7 @@ var handlers = {
     streamInfo.url1=randomPhrase(Happy2);
     this.response.speak('Let me play another Happy Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
     this.emit(':responseReady');
+
   }
   else if (flag==5)
   {
@@ -110,6 +143,11 @@ var handlers = {
     this.response.speak('Let me play another romantic Song.').audioPlayerPlay('REPLACE_ALL', streamInfo.url1, streamInfo.url1, null, 0);
     this.emit(':responseReady');
   }
+    else if(flag==7)
+    {
+       this.emit(':ask','Here is another one Why couldn\'t the bicycle stand up by itself? It was two tired.');
+    }  
+
   else
   {
     streamInfo.url1=randomPhrase(Party2);
@@ -129,11 +167,19 @@ var handlers = {
     this.emit('AMAZON.StopIntent');
   },
   'AMAZON.StopIntent': function() {
-    this.response.speak('Okay. GoodBye! See you later.').audioPlayerStop();
+    if (flag==0)
+    {
+      this.emit(':tell','Okay. I have stopped.');
+    }
+    else
+    {
+    this.response.speak('Okay. I have stopped the music. GoodBye! See you later.').audioPlayerStop();
     this.emit(':responseReady');
+  }
   },
   'AMAZON.ResumeIntent': function() {
-    this.emit('PlayStream');
+    this.response.speak('This skill currently doesn\'t support Resume feature.');
+    this.emit(':responseReady');
   },
   
   'AMAZON.StartOverIntent': function() {
@@ -141,10 +187,31 @@ var handlers = {
     this.emit(':responseReady');
   },
   'AMAZON.YesIntent': function() {
+    if(flag==1)
+    {
+      this.emit('HappyIntent');
+    }
+    else if(flag==7)
+    {
+      this.emit(':ask', 'Here\'s another one..... Why couldn\'t the bicycle stand up by itself?.... It was two tired');
+      //this.emit(':ask','hahahhah');
+    }
+    else
+    {
     this.emit('LaunchRequest');
+  }
   },
   'AMAZON.NoIntent': function() {
-    this.emit(':tell', 'By then!');
+    if(flag==1)
+    {
+      flag=7;
+      this.emit(':ask','Okay.. Let me try something else...How about a joke?');
+      //flag=7;
+    }
+    else
+    {
+    this.emit(':tell', 'GoodBye then! Take care..');
+  }
   },
    'PlayCommandIssued': function() {
 
@@ -162,6 +229,8 @@ var handlers = {
      this.emit('AMAZON.StopIntent');
    }
 }
+
+//const Sad=['',''];
 
 const Happy=['https://s3.amazonaws.com/rocksong/happy.mp3','https://s3.amazonaws.com/rocksong/feeling+good.mp3','https://s3.amazonaws.com/rocksong/Oasis+-+Wonderwall.mp3'];
 
@@ -183,7 +252,7 @@ const Party2=['https://s3.amazonaws.com/rocksong/Sia+-+Cheap+Thrills+(Lyric+Vide
 
 const Relax2=['https://s3.amazonaws.com/rocksong/All+Saints+-+Pure+Shores+(Official+Music+Video).mp3','https://s3.amazonaws.com/rocksong/Coldplay+-+The+Scientist.mp3','https://s3.amazonaws.com/rocksong/Coldplay+-+Paradise+(Official+Video).mp3',];
 
-
+//const sad2=['',''];
 
 function randomPhrase(myData) {
 
@@ -194,6 +263,14 @@ function randomPhrase(myData) {
     return(myData[i]);
 }
 
+function randomLines(myData) {
+
+    var i = 0;
+
+    i = Math.floor(Math.random() * myData.length);
+
+    return(myData[i]);
+}
 
 var audioEventHandlers = {
   'PlaybackStarted': function() {
