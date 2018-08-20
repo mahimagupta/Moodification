@@ -1,3 +1,3 @@
-# Audio Stream Starter - Skill Template
+# Moodification
 
-A starter template for an Alexa audio streaming skill.
+An Alexa Skill to uplift user's current mood by playing some good music.
